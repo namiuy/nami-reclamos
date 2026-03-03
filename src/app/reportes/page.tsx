@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Grid from '@mui/material/Grid'
+import Grid2 from '@mui/material/Unstable_Grid2'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Table from '@mui/material/Table'
@@ -129,8 +129,8 @@ export default function ReportesPage() {
 
       {/* TAB 0: Resumen General */}
       {tab_value === 0 && resumen_data && (
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={4}>
+        <Grid2 container spacing={3}>
+          <Grid2 xs={12} md={4}>
             <Card>
               <CardContent>
                 <Typography variant="h6" color="text.secondary" gutterBottom>
@@ -141,9 +141,9 @@ export default function ReportesPage() {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
+          </Grid2>
 
-          <Grid item xs={12} md={4}>
+          <Grid2 xs={12} md={4}>
             <Card>
               <CardContent>
                 <Typography variant="h6" gutterBottom>
@@ -169,9 +169,9 @@ export default function ReportesPage() {
                 </TableContainer>
               </CardContent>
             </Card>
-          </Grid>
+          </Grid2>
 
-          <Grid item xs={12} md={4}>
+          <Grid2 xs={12} md={4}>
             <Card>
               <CardContent>
                 <Typography variant="h6" gutterBottom>
@@ -197,9 +197,9 @@ export default function ReportesPage() {
                 </TableContainer>
               </CardContent>
             </Card>
-          </Grid>
+          </Grid2>
 
-          <Grid item xs={12}>
+          <Grid2 xs={12}>
             <Card>
               <CardContent>
                 <Typography variant="h6" gutterBottom>
@@ -233,8 +233,8 @@ export default function ReportesPage() {
                 </TableContainer>
               </CardContent>
             </Card>
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
       )}
 
       {/* TAB 1: Por Fecha */}
@@ -245,8 +245,8 @@ export default function ReportesPage() {
               <Typography variant="h6" gutterBottom>
                 Filtrar por Rango de Fechas
               </Typography>
-              <Grid container spacing={2} alignItems="center">
-                <Grid item xs={12} md={4}>
+              <Grid2 container spacing={2} alignItems="center">
+                <Grid2 xs={12} md={4}>
                   <TextField
                     label="Desde"
                     type="date"
@@ -255,8 +255,8 @@ export default function ReportesPage() {
                     onChange={(e) => set_fecha_desde(e.target.value)}
                     InputLabelProps={{ shrink: true }}
                   />
-                </Grid>
-                <Grid item xs={12} md={4}>
+                </Grid2>
+                <Grid2 xs={12} md={4}>
                   <TextField
                     label="Hasta"
                     type="date"
@@ -265,8 +265,8 @@ export default function ReportesPage() {
                     onChange={(e) => set_fecha_hasta(e.target.value)}
                     InputLabelProps={{ shrink: true }}
                   />
-                </Grid>
-                <Grid item xs={12} md={4}>
+                </Grid2>
+                <Grid2 xs={12} md={4}>
                   <Button
                     variant="contained"
                     fullWidth
@@ -275,8 +275,8 @@ export default function ReportesPage() {
                   >
                     {loading ? 'Buscando...' : 'Buscar'}
                   </Button>
-                </Grid>
-              </Grid>
+                </Grid2>
+              </Grid2>
             </CardContent>
           </Card>
 
