@@ -7,7 +7,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import MenuItem from '@mui/material/MenuItem'
-import Grid from '@mui/material/Grid'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -102,300 +102,310 @@ export function ReclamoForm({ initial_data, is_edit_mode = false }: ReclamoFormP
         )}
 
         <Box component="form" onSubmit={handleSubmit(on_submit)} noValidate>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="reclamo_motivo"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Motivo (Español)"
-                    fullWidth
-                    multiline
-                    rows={3}
-                    error={!!errors.reclamo_motivo}
-                    helperText={errors.reclamo_motivo?.message}
-                    required
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="reclamo_motivo_ingles"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Motivo (Inglés)"
-                    fullWidth
-                    multiline
-                    rows={3}
-                    error={!!errors.reclamo_motivo_ingles}
-                    helperText={errors.reclamo_motivo_ingles?.message}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="reclamo_articulo_nombre"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Nombre del Artículo"
-                    fullWidth
-                    error={!!errors.reclamo_articulo_nombre}
-                    helperText={errors.reclamo_articulo_nombre?.message}
-                    required
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="reclamo_artiiculo"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Código del Artículo"
-                    fullWidth
-                    error={!!errors.reclamo_artiiculo}
-                    helperText={errors.reclamo_artiiculo?.message}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Controller
-                name="reclamo_cantidad"
-                control={control}
-                render={({ field: { onChange, value, ...field } }) => (
-                  <TextField
-                    {...field}
-                    value={value}
-                    onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
-                    label="Cantidad"
-                    type="number"
-                    fullWidth
-                    error={!!errors.reclamo_cantidad}
-                    helperText={errors.reclamo_cantidad?.message}
-                    required
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Controller
-                name="reclamo_precio_fob"
-                control={control}
-                render={({ field: { onChange, value, ...field } }) => (
-                  <TextField
-                    {...field}
-                    value={value}
-                    onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
-                    label="Precio FOB"
-                    type="number"
-                    fullWidth
-                    error={!!errors.reclamo_precio_fob}
-                    helperText={errors.reclamo_precio_fob?.message}
-                    required
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Controller
-                name="reclamo_fecha"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Fecha"
-                    type="datetime-local"
-                    fullWidth
-                    error={!!errors.reclamo_fecha}
-                    helperText={errors.reclamo_fecha?.message}
-                    required
-                    InputLabelProps={{ shrink: true }}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Controller
-                name="proveedor_id"
-                control={control}
-                render={({ field: { onChange, value, ...field } }) => (
-                  <TextField
-                    {...field}
-                    value={value}
-                    onChange={(e) => onChange(parseInt(e.target.value) || 0)}
-                    label="ID Proveedor"
-                    type="number"
-                    fullWidth
-                    error={!!errors.proveedor_id}
-                    helperText={errors.proveedor_id?.message}
-                    required
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Controller
-                name="empresa_id"
-                control={control}
-                render={({ field: { onChange, value, ...field } }) => (
-                  <TextField
-                    {...field}
-                    value={value}
-                    onChange={(e) => onChange(parseInt(e.target.value) || 0)}
-                    label="ID Empresa"
-                    type="number"
-                    fullWidth
-                    error={!!errors.empresa_id}
-                    helperText={errors.empresa_id?.message}
-                    required
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={4}>
-              <Controller
-                name="persona_id"
-                control={control}
-                render={({ field: { onChange, value, ...field } }) => (
-                  <TextField
-                    {...field}
-                    value={value}
-                    onChange={(e) => onChange(parseInt(e.target.value) || 0)}
-                    label="ID Persona"
-                    type="number"
-                    fullWidth
-                    error={!!errors.persona_id}
-                    helperText={errors.persona_id?.message}
-                    required
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="reclamo_estado_sircal"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    select
-                    label="Estado Sircal"
-                    fullWidth
-                    error={!!errors.reclamo_estado_sircal}
-                    helperText={errors.reclamo_estado_sircal?.message}
-                    required
-                  >
-                    {ESTADOS_SIRCAL.map((estado) => (
-                      <MenuItem key={estado} value={estado}>
-                        {estado}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="reclamo_estado_proveedor"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    select
-                    label="Estado Proveedor"
-                    fullWidth
-                    error={!!errors.reclamo_estado_proveedor}
-                    helperText={errors.reclamo_estado_proveedor?.message}
-                    required
-                  >
-                    {ESTADOS_PROVEEDOR.map((estado) => (
-                      <MenuItem key={estado} value={estado}>
-                        {estado}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="reclamo_observaciones"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Observaciones (Español)"
-                    fullWidth
-                    multiline
-                    rows={3}
-                    error={!!errors.reclamo_observaciones}
-                    helperText={errors.reclamo_observaciones?.message}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <Controller
-                name="reclamo_observaciones_ingles"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Observaciones (Inglés)"
-                    fullWidth
-                    multiline
-                    rows={3}
-                    error={!!errors.reclamo_observaciones_ingles}
-                    helperText={errors.reclamo_observaciones_ingles?.message}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
-                <Button
-                  variant="outlined"
-                  onClick={handle_cancel}
-                  disabled={submitting}
-                >
-                  Cancelar
-                </Button>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  disabled={submitting}
-                  startIcon={submitting ? <CircularProgress size={20} /> : null}
-                >
-                  {submitting ? 'Guardando...' : 'Guardar'}
-                </Button>
+          <Stack spacing={3}>
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_motivo"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Motivo (Español)"
+                      fullWidth
+                      multiline
+                      rows={3}
+                      error={!!errors.reclamo_motivo}
+                      helperText={errors.reclamo_motivo?.message}
+                      required
+                    />
+                  )}
+                />
               </Box>
-            </Grid>
-          </Grid>
+
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_motivo_ingles"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Motivo (Inglés)"
+                      fullWidth
+                      multiline
+                      rows={3}
+                      error={!!errors.reclamo_motivo_ingles}
+                      helperText={errors.reclamo_motivo_ingles?.message}
+                    />
+                  )}
+                />
+              </Box>
+            </Stack>
+
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_articulo_nombre"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Nombre del Artículo"
+                      fullWidth
+                      error={!!errors.reclamo_articulo_nombre}
+                      helperText={errors.reclamo_articulo_nombre?.message}
+                      required
+                    />
+                  )}
+                />
+              </Box>
+
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_artiiculo"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Código del Artículo"
+                      fullWidth
+                      error={!!errors.reclamo_artiiculo}
+                      helperText={errors.reclamo_artiiculo?.message}
+                    />
+                  )}
+                />
+              </Box>
+            </Stack>
+
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_cantidad"
+                  control={control}
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <TextField
+                      {...field}
+                      value={value}
+                      onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
+                      label="Cantidad"
+                      type="number"
+                      fullWidth
+                      error={!!errors.reclamo_cantidad}
+                      helperText={errors.reclamo_cantidad?.message}
+                      required
+                    />
+                  )}
+                />
+              </Box>
+
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_precio_fob"
+                  control={control}
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <TextField
+                      {...field}
+                      value={value}
+                      onChange={(e) => onChange(parseFloat(e.target.value) || 0)}
+                      label="Precio FOB"
+                      type="number"
+                      fullWidth
+                      error={!!errors.reclamo_precio_fob}
+                      helperText={errors.reclamo_precio_fob?.message}
+                      required
+                    />
+                  )}
+                />
+              </Box>
+
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_fecha"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Fecha"
+                      type="datetime-local"
+                      fullWidth
+                      error={!!errors.reclamo_fecha}
+                      helperText={errors.reclamo_fecha?.message}
+                      required
+                      InputLabelProps={{ shrink: true }}
+                    />
+                  )}
+                />
+              </Box>
+            </Stack>
+
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="proveedor_id"
+                  control={control}
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <TextField
+                      {...field}
+                      value={value}
+                      onChange={(e) => onChange(parseInt(e.target.value) || 0)}
+                      label="ID Proveedor"
+                      type="number"
+                      fullWidth
+                      error={!!errors.proveedor_id}
+                      helperText={errors.proveedor_id?.message}
+                      required
+                    />
+                  )}
+                />
+              </Box>
+
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="empresa_id"
+                  control={control}
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <TextField
+                      {...field}
+                      value={value}
+                      onChange={(e) => onChange(parseInt(e.target.value) || 0)}
+                      label="ID Empresa"
+                      type="number"
+                      fullWidth
+                      error={!!errors.empresa_id}
+                      helperText={errors.empresa_id?.message}
+                      required
+                    />
+                  )}
+                />
+              </Box>
+
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="persona_id"
+                  control={control}
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <TextField
+                      {...field}
+                      value={value}
+                      onChange={(e) => onChange(parseInt(e.target.value) || 0)}
+                      label="ID Persona"
+                      type="number"
+                      fullWidth
+                      error={!!errors.persona_id}
+                      helperText={errors.persona_id?.message}
+                      required
+                    />
+                  )}
+                />
+              </Box>
+            </Stack>
+
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_estado_sircal"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      select
+                      label="Estado Sircal"
+                      fullWidth
+                      error={!!errors.reclamo_estado_sircal}
+                      helperText={errors.reclamo_estado_sircal?.message}
+                      required
+                    >
+                      {ESTADOS_SIRCAL.map((estado) => (
+                        <MenuItem key={estado} value={estado}>
+                          {estado}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  )}
+                />
+              </Box>
+
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_estado_proveedor"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      select
+                      label="Estado Proveedor"
+                      fullWidth
+                      error={!!errors.reclamo_estado_proveedor}
+                      helperText={errors.reclamo_estado_proveedor?.message}
+                      required
+                    >
+                      {ESTADOS_PROVEEDOR.map((estado) => (
+                        <MenuItem key={estado} value={estado}>
+                          {estado}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  )}
+                />
+              </Box>
+            </Stack>
+
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_observaciones"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Observaciones (Español)"
+                      fullWidth
+                      multiline
+                      rows={3}
+                      error={!!errors.reclamo_observaciones}
+                      helperText={errors.reclamo_observaciones?.message}
+                    />
+                  )}
+                />
+              </Box>
+
+              <Box sx={{ flex: 1 }}>
+                <Controller
+                  name="reclamo_observaciones_ingles"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Observaciones (Inglés)"
+                      fullWidth
+                      multiline
+                      rows={3}
+                      error={!!errors.reclamo_observaciones_ingles}
+                      helperText={errors.reclamo_observaciones_ingles?.message}
+                    />
+                  )}
+                />
+              </Box>
+            </Stack>
+
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
+              <Button
+                variant="outlined"
+                onClick={handle_cancel}
+                disabled={submitting}
+              >
+                Cancelar
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                disabled={submitting}
+                startIcon={submitting ? <CircularProgress size={20} /> : null}
+              >
+                {submitting ? 'Guardando...' : 'Guardar'}
+              </Button>
+            </Box>
+          </Stack>
         </Box>
       </CardContent>
     </Card>

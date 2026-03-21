@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Table from '@mui/material/Table'
@@ -129,154 +129,148 @@ export default function ReportesPage() {
 
       {/* TAB 0: Resumen General */}
       {tab_value === 0 && resumen_data && (
-        <Grid2 container spacing={3}>
-          <Grid2 xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" color="text.secondary" gutterBottom>
-                  Total de Reclamos
-                </Typography>
-                <Typography variant="h3" color="primary">
-                  {resumen_data.total}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid2>
+        <Stack spacing={3}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
+            <Box sx={{ flex: 1 }}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h6" color="text.secondary" gutterBottom>
+                    Total de Reclamos
+                  </Typography>
+                  <Typography variant="h3" color="primary">
+                    {resumen_data.total}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
 
-          <Grid2 xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Por Estado Sircal
-                </Typography>
-                <TableContainer>
-                  <Table size="small">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Estado</TableCell>
-                        <TableCell align="right">Cantidad</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {resumen_data.por_estado_sircal.map((item) => (
-                        <TableRow key={item.estado}>
-                          <TableCell>{item.estado}</TableCell>
-                          <TableCell align="right">{item.cantidad}</TableCell>
+            <Box sx={{ flex: 1 }}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h6" gutterBottom>
+                    Por Estado Sircal
+                  </Typography>
+                  <TableContainer>
+                    <Table size="small">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Estado</TableCell>
+                          <TableCell align="right">Cantidad</TableCell>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-          </Grid2>
+                      </TableHead>
+                      <TableBody>
+                        {resumen_data.por_estado_sircal.map((item) => (
+                          <TableRow key={item.estado}>
+                            <TableCell>{item.estado}</TableCell>
+                            <TableCell align="right">{item.cantidad}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </CardContent>
+              </Card>
+            </Box>
 
-          <Grid2 xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Por Estado Proveedor
-                </Typography>
-                <TableContainer>
-                  <Table size="small">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Estado</TableCell>
-                        <TableCell align="right">Cantidad</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {resumen_data.por_estado_proveedor.map((item) => (
-                        <TableRow key={item.estado}>
-                          <TableCell>{item.estado}</TableCell>
-                          <TableCell align="right">{item.cantidad}</TableCell>
+            <Box sx={{ flex: 1 }}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h6" gutterBottom>
+                    Por Estado Proveedor
+                  </Typography>
+                  <TableContainer>
+                    <Table size="small">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Estado</TableCell>
+                          <TableCell align="right">Cantidad</TableCell>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-          </Grid2>
+                      </TableHead>
+                      <TableBody>
+                        {resumen_data.por_estado_proveedor.map((item) => (
+                          <TableRow key={item.estado}>
+                            <TableCell>{item.estado}</TableCell>
+                            <TableCell align="right">{item.cantidad}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </CardContent>
+              </Card>
+            </Box>
+          </Stack>
 
-          <Grid2 xs={12}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Últimos Reclamos
-                </Typography>
-                <TableContainer component={Paper}>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Fecha</TableCell>
-                        <TableCell>Motivo</TableCell>
-                        <TableCell>Estado</TableCell>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>
+                Últimos Reclamos
+              </Typography>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>ID</TableCell>
+                      <TableCell>Fecha</TableCell>
+                      <TableCell>Motivo</TableCell>
+                      <TableCell>Estado</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {resumen_data.ultimos_reclamos.map((reclamo) => (
+                      <TableRow key={reclamo.reclamo_id}>
+                        <TableCell>{reclamo.reclamo_id}</TableCell>
+                        <TableCell>
+                          {format(new Date(reclamo.reclamo_fecha), 'dd/MM/yyyy HH:mm', {
+                            locale: es,
+                          })}
+                        </TableCell>
+                        <TableCell>{reclamo.reclamo_motivo}</TableCell>
+                        <TableCell>{reclamo.reclamo_estado_sircal}</TableCell>
                       </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {resumen_data.ultimos_reclamos.map((reclamo) => (
-                        <TableRow key={reclamo.reclamo_id}>
-                          <TableCell>{reclamo.reclamo_id}</TableCell>
-                          <TableCell>
-                            {format(new Date(reclamo.reclamo_fecha), 'dd/MM/yyyy HH:mm', {
-                              locale: es,
-                            })}
-                          </TableCell>
-                          <TableCell>{reclamo.reclamo_motivo}</TableCell>
-                          <TableCell>{reclamo.reclamo_estado_sircal}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-          </Grid2>
-        </Grid2>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </CardContent>
+          </Card>
+        </Stack>
       )}
 
       {/* TAB 1: Por Fecha */}
       {tab_value === 1 && (
-        <Box>
-          <Card sx={{ mb: 3 }}>
+        <Stack spacing={3}>
+          <Card>
             <CardContent>
               <Typography variant="h6" gutterBottom>
                 Filtrar por Rango de Fechas
               </Typography>
-              <Grid2 container spacing={2} alignItems="center">
-                <Grid2 xs={12} md={4}>
-                  <TextField
-                    label="Desde"
-                    type="date"
-                    fullWidth
-                    value={fecha_desde}
-                    onChange={(e) => set_fecha_desde(e.target.value)}
-                    InputLabelProps={{ shrink: true }}
-                  />
-                </Grid2>
-                <Grid2 xs={12} md={4}>
-                  <TextField
-                    label="Hasta"
-                    type="date"
-                    fullWidth
-                    value={fecha_hasta}
-                    onChange={(e) => set_fecha_hasta(e.target.value)}
-                    InputLabelProps={{ shrink: true }}
-                  />
-                </Grid2>
-                <Grid2 xs={12} md={4}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    onClick={handle_buscar_por_fechas}
-                    disabled={loading}
-                  >
-                    {loading ? 'Buscando...' : 'Buscar'}
-                  </Button>
-                </Grid2>
-              </Grid2>
+              <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} alignItems="center">
+                <TextField
+                  label="Desde"
+                  type="date"
+                  fullWidth
+                  value={fecha_desde}
+                  onChange={(e) => set_fecha_desde(e.target.value)}
+                  InputLabelProps={{ shrink: true }}
+                />
+                <TextField
+                  label="Hasta"
+                  type="date"
+                  fullWidth
+                  value={fecha_hasta}
+                  onChange={(e) => set_fecha_hasta(e.target.value)}
+                  InputLabelProps={{ shrink: true }}
+                />
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={handle_buscar_por_fechas}
+                  disabled={loading}
+                >
+                  {loading ? 'Buscando...' : 'Buscar'}
+                </Button>
+              </Stack>
             </CardContent>
           </Card>
 
@@ -321,7 +315,7 @@ export default function ReportesPage() {
               </CardContent>
             </Card>
           )}
-        </Box>
+        </Stack>
       )}
     </MainLayout>
   )

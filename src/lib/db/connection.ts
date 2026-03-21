@@ -22,17 +22,6 @@ const config: sql.config = {
   },
 }
 
-// Debug - eliminar en producción
-console.log('DB Connection Config:', {
-  server: config.server,
-  user: config.user,
-  database: config.database,
-  port: config.port,
-  password_length: config.password.length,
-  password_first_char: config.password[0],
-  password_last_char: config.password[config.password.length - 1],
-})
-
 let pool: sql.ConnectionPool | null = null
 
 export async function get_database_pool(): Promise<sql.ConnectionPool> {
